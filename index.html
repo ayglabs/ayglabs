@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AYG Labs | Red-Blue Edition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Renk Paleti Güncellemesi */
+    :root {
+      --retro-blue: #00d4ff;   /* Elektrik Mavisi */
+      --retro-red: #ff003c;    /* Kor Kırmızısı */
+      --dark-bg: #050505;      /* Tam Siyah Arka Plan */
+      --section-bg: rgba(10, 10, 20, 0.85);
+      --red-glow: rgba(255, 0, 60, 0.5);
+      --blue-glow: rgba(0, 212, 255, 0.5);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto Mono', monospace;
+      background: var(--dark-bg);
+      color: #e0e0e0;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: 
+        radial-gradient(circle at 20% 30%, #1a0000 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, #000a1a 0%, transparent 40%);
+    }
+
+    /* Izgara Efekti */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                  linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 255, 0.05));
+      background-size: 100% 4px, 4px 100%;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Navigasyon */
+    nav {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 15px 0;
+      width: 100%;
+      text-align: center;
+      border-bottom: 2px solid var(--retro-red);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 0 15px var(--red-glow);
+    }
+
+    nav a {
+      color: var(--retro-blue);
+      text-decoration: none;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.75rem;
+      margin: 0 15px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--retro-red);
+      text-shadow: 0 0 10px var(--retro-red);
+    }
+
+    /* Konteynerler */
+    .container, .section {
+      max-width: 900px;
+      width: 90%;
+      margin: 40px auto;
+      padding: 30px;
+      background: var(--section-bg);
+      border-left: 5px solid var(--retro-red);
+      border-right: 2px solid var(--retro-blue);
+      box-shadow: 0 0 20px rgba(0,0,0,1);
+      position: relative;
+    }
+
+    /* Glitch Efekti Başlık */
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: white;
+      text-align: center;
+      text-shadow: 3px 3px var(--retro-red), -3px -3px var(--retro-blue);
+      margin: 40px 0;
+    }
+
+    h2 {
+      font-family: 'Press Start 2P', cursive;
+      color: var(--retro-blue);
+      font-size: 1.2rem;
+      border-bottom: 1px solid var(--retro-red);
+      padding-bottom: 10px;
+    }
+
+    /* Kartlar */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      border: 1px solid #333;
+      padding: 20px;
+      background: rgba(0,0,0,0.5);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--retro-blue);
+      box-shadow: 0 0 15px var(--blue-glow);
+      transform: scale(1.02);
+    }
+
+    .card h3 {
+      color: var(--retro-red);
+      margin-top: 0;
+    }
+
+    /* Butonlar */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.7rem;
+      text-decoration: none;
+      margin: 10px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-red {
+      background: transparent;
+      border: 2px solid var(--retro-red);
+      color: var(--retro-red);
+    }
+
+    .btn-red:hover {
+      background: var(--retro-red);
+      color: white;
+      box-shadow: 0 0 20px var(--retro-red);
+    }
+
+    .btn-blue {
+      background: var(--retro-blue);
+      border: 2px solid var(--retro-blue);
+      color: black;
+    }
+
+    .btn-blue:hover {
+      background: transparent;
+      color: var(--retro-blue);
+      box-shadow: 0 0 20px var(--retro-blue);
+    }
+
+    /* Resume Kısmı */
+    .cv-item {
+      margin-bottom: 20px;
+      padding: 15px;
+      border-left: 2px solid var(--retro-blue);
+    }
+
+    footer {
+      padding: 40px;
+      text-align: center;
+      border-top: 2px solid var(--retro-blue);
+      width: 100%;
+      margin-top: 50px;
+      background: #000;
+    }
+
+    /* Animasyon: Fade In */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section { animation: fadeInUp 0.8s ease-out both; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#hero">HOME</a>
+    <a href="#projects">PROJECTS</a>
+    <a href="#resume">RESUME</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+
+  <h1>AYG LABS_V2</h1>
+
+  <section id="hero" class="container">
+    <h2 style="color: var(--retro-red);">[SYSTEM STATUS: ACTIVE]</h2>
+    <p>Algoritmalar ve yaratıcı kodlama ile dijital sınırları zorluyoruz. Kırmızı ve mavinin kesiştiği bu laboratuvar, yeni nesil teknolojik çözümlerin merkezidir.</p>
+    <div style="text-align: center;">
+      <a href="#projects" class="btn btn-blue">VIEW PROJECTS</a>
+      <a href="#contact" class="btn btn-red">INITIALIZE CONTACT</a>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <h2>01_ PROJECTS</h2>
+    <div class="grid-container">
+      <div class="card">
+        <h3>NEURAL LINK</h3>
+        <p>Veri akışını optimize eden derin öğrenme mimarisi.</p>
+        <small>TECH: PYTHON, CUDA</small>
+      </div>
+      <div class="card">
+        <h3>CYBER CORE</h3>
+        <p>Yüksek güvenlikli merkezi yönetim modülü.</p>
+        <small>TECH: C++, RUST</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="section">
+    <h2>02_ RESUME</h2>
+    <div class="cv-item">
+      <h3 style="color: var(--retro-blue);">Lead Developer</h3>
+      <p>AYG Labs | 2024 - Present</p>
+    </div>
+    <div class="cv-item">
+      <h3 style="color: var(--retro-blue);">Computer Engineering</h3>
+      <p>[University Name] | 2020 - 2024</p>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>03_ CONTACT</h2>
+    <p>Terminal üzerinden sinyal gönderin:</p>
+    <div style="text-align: center;">
+      <a href="mailto:contact@ayglabs.com" class="btn btn-red">SEND EMAIL</a>
+    </div>
+  </section>
+
+  <footer>
+    <p style="color: var(--retro-blue);">© 2026 AYG LABS // TERMINAL ACCESS GRANTED</p>
+  </footer>
+
+</body>
+</html>
