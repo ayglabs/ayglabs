@@ -3,200 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYG LABS | Research & Innovation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>AYG LABS | Digital Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Outfit:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #003366; /* Klasik üniversite laciverti */
-            --accent-red: #990000;
-            --text-dark: #1a1a1a;
-            --bg-light: #ffffff;
-            --nav-bg: #f8f9fa;
+            --bg: #050505;
+            --card-bg: rgba(20, 20, 25, 0.6);
+            --accent: #38bdf8; /* Elektrik Mavisi */
+            --accent-red: #f43f5e; /* Premium Kırmızı */
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--bg-light); line-height: 1.7; }
-
-        /* Üst Header - Geniş ve Prestijli */
-        header {
-            width: 100%;
-            border-bottom: 3px solid var(--primary-blue);
-            padding: 30px 5%;
-            background: white;
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            /* Arka planda derinlik veren ışık sızmaları */
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 100% 100%, rgba(244, 63, 94, 0.15) 0%, transparent 35%);
+            background-attachment: fixed;
         }
 
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Crimson Pro', serif;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--primary-blue);
-            text-decoration: none;
-            letter-spacing: -1px;
-        }
-
-        /* Navigasyon - Sıra sıra dizilmiş sekmeler */
+        /* Premium Navigasyon */
         nav {
-            background: var(--nav-bg);
-            padding: 0 5%;
-            border-bottom: 1px solid #e1e4e8;
-        }
-
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 8px 30px;
+            border-radius: 100px;
             display: flex;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         nav a {
+            color: var(--text-dim);
             text-decoration: none;
-            color: var(--text-dark);
-            padding: 15px 25px;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            transition: 0.2s;
-            border-bottom: 3px solid transparent;
-        }
-
-        nav a:hover {
-            background: #e9ecef;
-            color: var(--primary-blue);
-        }
-
-        nav a.active {
-            border-bottom: 3px solid var(--primary-blue);
-            color: var(--primary-blue);
-        }
-
-        /* Ana İçerik Alanı */
-        main {
-            max-width: 1400px;
-            margin: 60px auto;
-            padding: 0 5%;
-            display: grid;
-            grid-template-columns: 2fr 1fr; /* Sol geniş, sağ dar sütun */
-            gap: 60px;
-        }
-
-        .hero-section h1 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 3rem;
-            margin-bottom: 25px;
-            color: var(--primary-blue);
-        }
-
-        .hero-section p {
-            font-size: 1.2rem;
-            color: #444;
-            margin-bottom: 30px;
-        }
-
-        /* Haberler/Yazılar Kısmı */
-        .section-label {
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            font-weight: 700;
             letter-spacing: 1px;
-            color: var(--accent-red);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-main);
+            background: var(--glass);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.05);
+        }
+
+        /* Hero Alanı */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 20px 80px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -3px;
+            line-height: 0.9;
             margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
+            background: linear-gradient(to bottom, #fff 30%, #444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .news-item {
-            margin-bottom: 35px;
+        .tagline {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
         }
 
-        .news-item h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
+        /* Grid Sistemi */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
         }
 
-        .news-item a {
-            color: var(--primary-blue);
-            text-decoration: none;
+        .feature-card {
+            grid-column: span 6;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .news-item a:hover { text-decoration: underline; }
+        .feature-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(25, 25, 30, 0.8);
+        }
 
+        .card-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-card h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Footer */
         footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 5%;
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
             margin-top: 100px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
         }
 
-        /* Mobil Uyum */
+        /* Mobil */
         @media (max-width: 768px) {
-            main { grid-template-columns: 1fr; }
-            .nav-content { overflow-x: auto; }
-            .logo { font-size: 1.8rem; }
+            .feature-card { grid-column: span 12; }
+            nav { width: 95%; justify-content: space-around; padding: 5px; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-content">
-            <a href="index.html" class="logo">AYG LABS</a>
-            <div style="font-size: 0.8rem; text-align: right;">
-                EST. 2024<br>
-                <span style="color: var(--accent-red)">RESEARCH & LOGIC</span>
-            </div>
-        </div>
-    </header>
-
     <nav>
-        <div class="nav-content">
-            <a href="index.html" class="active">Home</a>
-            <a href="journal.html">Journal</a>
-            <a href="works.html">Works</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </div>
+        <a href="index.html" class="active">Home</a>
+        <a href="journal.html">Journal</a>
+        <a href="works.html">Works</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
-    <main>
-        <div class="hero-section">
-            <h1>Advancing Computational Thinking</h1>
-            <p>Welcome to AYG Labs. We are dedicated to the systematic exploration of algorithms and the documentation of digital evolution.</p>
-            
-            <div class="section-label">Recent Journal Entries</div>
-            
-            <div class="news-item">
-                <h3><a href="journal.html">The Future of Decoupled Systems</a></h3>
-                <p>An in-depth look at how modular architecture is changing the way we build long-term software...</p>
+    <div class="wrapper">
+        <header>
+            <div class="brand">AYG LABS</div>
+            <p class="tagline">Where logic meets aesthetic. Developing future-proof algorithms and documenting the digital frontier.</p>
+        </header>
+
+        <main class="content-grid">
+            <div class="feature-card" onclick="location.href='journal.html'">
+                <span class="card-label">Latest Thought</span>
+                <h2>The Architecture of Silence</h2>
+                <p style="color: var(--text-dim)">Exploring minimalist approaches in complex system design.</p>
+                <div style="margin-top: 20px; color: var(--accent)">Read Journal →</div>
             </div>
 
-            <div class="news-item">
-                <h3><a href="journal.html">Algorithm Efficiency in Modern Hardware</a></h3>
-                <p>Testing the limits of sorting algorithms on the latest ARM-based architectures...</p>
+            <div class="feature-card" onclick="location.href='works.html'">
+                <span class="card-label">Featured Work</span>
+                <h2>Project Quantum</h2>
+                <p style="color: var(--text-dim)">A deep dive into real-time data processing engines.</p>
+                <div style="margin-top: 20px; color: var(--accent-red)">View Projects →</div>
             </div>
-        </div>
+        </main>
 
-        <aside>
-            <div class="section-label">Quick Links</div>
-            <ul style="list-style: none; line-height: 2.5;">
-                <li><a href="#" style="color: var(--primary-blue);">→ Academic Publications</a></li>
-                <li><a href="#" style="color: var(--primary-blue);">→ Open Source Repositories</a></li>
-                <li><a href="#" style="color: var(--primary-blue);">→ Annual Report 2025</a></li>
-            </ul>
-        </aside>
-    </main>
-
-    <footer>
-        <div style="max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between;">
-            <div>© 2026 AYG LABS</div>
-            <div>Privacy Policy | Terms of Service</div>
-        </div>
-    </footer>
+        <footer>
+            © 2026 AYG LABS • REFINING THE DIGITAL WORLD
+        </footer>
+    </div>
 
 </body>
 </html>
