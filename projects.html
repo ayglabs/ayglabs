@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | AYG LABS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #e63946; --bg: #0d0d0d; --border: rgba(255, 255, 255, 0.08); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: #fff; }
+        
+        header { width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; border-bottom: 2px solid var(--accent); background: var(--bg); }
+        .logo { font-weight: 900; font-size: 1.6rem; text-decoration: none; color: #fff; }
+        nav a { text-decoration: none; color: #fff; margin-left: 35px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; opacity: 0.7; }
+
+        .container { padding: 80px 5%; }
+        h1 { font-size: 5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 60px; }
+
+        .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+        .project-card { background: var(--bg); padding: 50px; transition: 0.3s; text-decoration: none; color: #fff; }
+        .project-card:hover { background: #111; border-left: 5px solid var(--accent); }
+        .project-tag { color: var(--accent); font-weight: 700; font-size: 0.8rem; margin-bottom: 15px; display: block; }
+        .project-card h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .project-card p { color: #888; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">AYG<span>LABS</span></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="journal.html">Journal</a>
+            <a href="projects.html" style="color:var(--accent); opacity:1;">Projects</a>
+            <a href="academic.html">Research & Documents</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Engineering Lab</h1>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="project-tag">C Language / System</span>
+                <h2>The Abyss</h2>
+                <p>Low-level memory management and pointer architecture documentation.</p>
+                <strong>STATUS: COMING SOON</strong>
+            </div>
+            </div>
+    </div>
+</body>
+</html>
