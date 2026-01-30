@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | AYG LABS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #e63946;
+            --bg: #0d0d0d;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: #fff; line-height: 1.6; overflow-x: hidden; }
+
+        header {
+            width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--accent); background: var(--bg);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .logo { font-weight: 900; font-size: 1.6rem; text-decoration: none; color: #fff; }
+        
+        /* Dil Seçici */
+        .lang-switch { display: flex; gap: 10px; align-items: center; }
+        .lang-btn { 
+            background: none; border: none; color: #fff; opacity: 0.4; 
+            font-weight: 900; cursor: pointer; font-size: 0.85rem; transition: 0.3s;
+        }
+        .lang-btn.active { opacity: 1; color: var(--accent); }
+
+        .about-container { display: grid; grid-template-columns: 1fr 1.2fr; min-height: calc(100vh - 77px); }
+
+        /* KİMLİK KARTI */
+        .identity-card { padding: 80px 10%; border-right: 1px solid var(--border); background: #111; }
+        .hero-tag { color: var(--accent); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 40px; }
+        
+        .info-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .info-row label { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; }
+        .info-row span { font-weight: 400; color: #ccc; }
+
+        /* İÇERİK ALANI */
+        .profile-text { padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; }
+        .lang-content { display: none; }
+        .lang-content.active { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { font-size: 4rem; font-weight: 900; line-height: 0.95; margin-bottom: 30px; text-transform: uppercase; }
+        .desc { font-size: 1.3rem; color: #aaa; margin-bottom: 40px; }
+        
+        .target-box { background: #1a1111; border-left: 4px solid var(--accent); padding: 25px; margin-top: 20px; }
+        .target-box h4 { font-size: 0.7rem; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; letter-spacing: 1px; }
+        .target-box p { font-size: 1.1rem; font-weight: 700; color: #fff; }
+
+        @media (max-width: 900px) { .about-container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">AYG<span>LABS</span></a>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLang('en')">EN</button>
+            <span style="opacity:0.2">/</span>
+            <button class="lang-btn" onclick="setLang('tr')">TR</button>
+        </div>
+    </header>
+
+    <main class="about-container">
+        <section class="identity-card">
+            <span class="hero-tag" id="id-tag">Identity Document</span>
+            <div class="bio-info">
+                <div class="info-row"><label id="lbl-name">Name</label><span>Ahmet Yasin</span></div>
+                <div class="info-row"><label id="lbl-surname">Surname</label><span>[REDACTED]</span></div>
+                <div class="info-row"><label id="lbl-age">Age</label><span>17</span></div>
+                <div class="info-row"><label id="lbl-edu">Education</label><span id="val-edu">High School</span></div>
+            </div>
+        </section>
+
+        <section class="profile-text">
+            
+            <div id="en-content" class="lang-content active">
+                <h1>The Researcher.</h1>
+                <p class="desc">I am Ahmet Yasin, currently a high school student. The olympiad season is approaching, and I am in an intensive preparation period.</p>
+                <div class="target-box">
+                    <h4>Primary Objective</h4>
+                    <p>Achieving a gold medal at the IOI.</p>
+                </div>
+                <div class="target-box" style="background: #0a0a0a; border-left-color: #fff;">
+                    <h4>Academic Target</h4>
+                    <p>METU (ODTÜ) or ITU</p>
+                </div>
+                <p style="margin-top: 40px; font-weight: 900; letter-spacing: 3px; color: var(--accent);">STAY TUNED....</p>
+            </div>
+
+            <div id="tr-content" class="lang-content">
+                <h1>Araştırmacı.</h1>
+                <p class="desc">Ben Ahmet Yasin. Şu an henüz lisedeyim. Yakında olimpiyatlar başlıyor, şu an yoğun bir çalışma dönemindeyim.</p>
+                <div class="target-box">
+                    <h4>Ana Hedef</h4>
+                    <p>IOI'de altın madalya almak.</p>
+                </div>
+                <div class="target-box" style="background: #0a0a0a; border-left-color: #fff;">
+                    <h4>Akademik Hedef</h4>
+                    <p>ODTÜ veya İTÜ</p>
+                </div>
+                <p style="margin-top: 40px; font-weight: 900; letter-spacing: 3px; color: var(--accent);">TAKİPTE KALIN....</p>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        function setLang(lang) {
+            // İçerik değiştirme
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(lang + '-content').classList.add('active');
+            
+            // Buton aktiflik durumu
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Kimlik kartı etiketlerini güncelle
+            const isTr = lang === 'tr';
+            document.getElementById('id-tag').innerText = isTr ? 'Kimlik Belgesi' : 'Identity Document';
+            document.getElementById('lbl-name').innerText = isTr ? 'İsim' : 'Name';
+            document.getElementById('lbl-surname').innerText = isTr ? 'Soyisim' : 'Surname';
+            document.getElementById('lbl-age').innerText = isTr ? 'Yaş' : 'Age';
+            document.getElementById('lbl-edu').innerText = isTr ? 'Eğitim' : 'Education';
+            document.getElementById('val-edu').innerText = isTr ? 'Lise' : 'High School';
+        }
+    </script>
+</body>
+</html>
