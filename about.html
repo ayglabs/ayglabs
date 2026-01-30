@@ -6,138 +6,91 @@
     <title>About | AYG LABS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --accent: #e63946;
-            --bg: #0d0d0d;
-            --border: rgba(255, 255, 255, 0.08);
-        }
-
+        :root { --accent: #e63946; --bg: #0d0d0d; --border: rgba(255, 255, 255, 0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: #fff; line-height: 1.6; overflow-x: hidden; }
 
+        /* HEADER & NAV (Aynı Yapı) */
         header {
-            width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 2px solid var(--accent); background: var(--bg);
-            position: sticky; top: 0; z-index: 100;
+            width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--accent); background: var(--bg); position: sticky; top: 0; z-index: 1000;
         }
-        .logo { font-weight: 900; font-size: 1.6rem; text-decoration: none; color: #fff; }
+        .logo { font-weight: 900; font-size: 1.4rem; text-decoration: none; color: #fff; z-index: 1100; }
         .logo span { color: var(--accent); }
-        
-        /* NAVIGATION */
-        nav { display: flex; align-items: center; gap: 30px; }
-        nav a { text-decoration: none; color: #fff; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; opacity: 0.7; transition: 0.3s; }
-        nav a:hover, nav a.active { opacity: 1; color: var(--accent); }
+        nav { display: flex; gap: 25px; }
+        nav a { text-decoration: none; color: #fff; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; opacity: 0.6; }
+        nav a.active { opacity: 1; color: var(--accent); }
 
-        /* Dil Seçici */
-        .lang-switch { display: flex; gap: 10px; align-items: center; margin-left: 20px; border-left: 1px solid var(--border); padding-left: 20px; }
-        .lang-btn { 
-            background: none; border: none; color: #fff; opacity: 0.4; 
-            font-weight: 900; cursor: pointer; font-size: 0.85rem; transition: 0.3s;
+        @media (max-width: 850px) {
+            .menu-toggle { display: flex; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
+            .menu-toggle span { width: 28px; height: 2px; background: #fff; }
+            nav {
+                position: fixed; top: -100%; left: 0; width: 100%; height: 50vh; 
+                background: #111; flex-direction: column; justify-content: center; 
+                align-items: center; gap: 25px; transition: 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+                border-bottom: 4px solid var(--accent); z-index: 1050;
+            }
+            nav.active { top: 70px; }
+            .overlay {
+                position: fixed; inset: 0; background: rgba(0,0,0,0); visibility: hidden; 
+                transition: 0.4s; z-index: 1040; backdrop-filter: blur(8px);
+            }
+            .overlay.active { visibility: visible; background: rgba(0,0,0,0.7); }
+            .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
-        .lang-btn.active { opacity: 1; color: var(--accent); }
 
-        .about-container { display: grid; grid-template-columns: 1fr 1.2fr; min-height: calc(100vh - 77px); }
-
-        /* KİMLİK KARTI */
-        .identity-card { padding: 80px 10%; border-right: 1px solid var(--border); background: #111; }
-        .hero-tag { color: var(--accent); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 40px; }
+        /* ABOUT CONTENT */
+        .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; min-height: calc(100vh - 75px); }
+        .id-section { padding: 60px 10%; border-right: 1px solid var(--border); background: #111; }
+        .text-section { padding: 60px 10%; display: flex; flex-direction: column; justify-content: center; }
         
         .info-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .info-row label { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; }
-        .info-row span { font-weight: 400; color: #ccc; }
-
-        /* İÇERİK ALANI */
-        .profile-text { padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; }
-        .lang-content { display: none; }
-        .lang-content.active { display: block; animation: fadeIn 0.5s ease; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        h1 { font-size: 4rem; font-weight: 900; line-height: 0.95; margin-bottom: 30px; text-transform: uppercase; }
-        .desc { font-size: 1.3rem; color: #aaa; margin-bottom: 40px; }
+        .info-row label { color: var(--accent); font-weight: 900; text-transform: uppercase; font-size: 0.7rem; }
         
-        .target-box { background: #1a1111; border-left: 4px solid var(--accent); padding: 25px; margin-top: 20px; }
-        .target-box h4 { font-size: 0.7rem; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; letter-spacing: 1px; }
-        .target-box p { font-size: 1.1rem; font-weight: 700; color: #fff; }
+        h1 { font-size: 3.5rem; font-weight: 900; line-height: 1; margin-bottom: 30px; }
+        .target { border-left: 4px solid var(--accent); padding-left: 20px; margin: 30px 0; font-weight: 700; font-size: 1.2rem; }
 
-        @media (max-width: 900px) { .about-container { grid-template-columns: 1fr; } }
+        @media (max-width: 850px) { .about-grid { grid-template-columns: 1fr; } .id-section { border-right: none; } }
     </style>
 </head>
 <body>
-
     <header>
         <a href="index.html" class="logo">AYG<span>LABS</span></a>
-        <nav>
+        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <nav id="nav-menu">
             <a href="index.html">Home</a>
             <a href="journal.html">Journal</a>
             <a href="projects.html">Projects</a>
-            <a href="academic.html">Research & Documents</a>
             <a href="about.html" class="active">About</a>
-            <div class="lang-switch">
-                <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-                <span style="opacity:0.2">/</span>
-                <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
-            </div>
         </nav>
     </header>
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <main class="about-container">
-        <section class="identity-card">
-            <span class="hero-tag" id="id-tag">Identity Document</span>
-            <div class="bio-info">
-                <div class="info-row"><label id="lbl-name">Name</label><span>Ahmet Yasin</span></div>
-                <div class="info-row"><label id="lbl-surname">Surname</label><span>[REDACTED]</span></div>
-                <div class="info-row"><label id="lbl-age">Age</label><span>17</span></div>
-                <div class="info-row"><label id="lbl-edu">Education</label><span id="val-edu">High School</span></div>
-            </div>
+    <div class="about-grid">
+        <section class="id-section">
+            <h3 style="color:var(--accent); margin-bottom:30px; letter-spacing:2px;">KİMLİK // IDENTITY</h3>
+            <div class="info-row"><label>Ad</label><span>Ahmet Yasin</span></div>
+            <div class="info-row"><label>Soyad</label><span>[GİZLİ]</span></div>
+            <div class="info-row"><label>Yaş</label><span>17</span></div>
+            <div class="info-row"><label>Eğitim</label><span>Lise</span></div>
         </section>
-
-        <section class="profile-text">
-            <div id="en-content" class="lang-content active">
-                <h1>The Researcher.</h1>
-                <p class="desc">I am Ahmet Yasin, currently a high school student. The olympiad season is approaching, and I am in an intensive preparation period.</p>
-                <div class="target-box">
-                    <h4>Primary Objective</h4>
-                    <p>Achieving a gold medal at the IOI.</p>
-                </div>
-                <div class="target-box" style="background: #0a0a0a; border-left-color: #fff;">
-                    <h4>Academic Target</h4>
-                    <p>METU (ODTÜ) or ITU</p>
-                </div>
-                <p style="margin-top: 40px; font-weight: 900; letter-spacing: 3px; color: var(--accent);">STAY TUNED....</p>
-            </div>
-
-            <div id="tr-content" class="lang-content">
-                <h1>Araştırmacı.</h1>
-                <p class="desc">Ben Ahmet Yasin. Şu an henüz lisedeyim. Yakında olimpiyatlar başlıyor, şu an yoğun bir çalışma dönemindeyim.</p>
-                <div class="target-box">
-                    <h4>Ana Hedef</h4>
-                    <p>IOI'de altın madalya almak.</p>
-                </div>
-                <div class="target-box" style="background: #0a0a0a; border-left-color: #fff;">
-                    <h4>Akademik Hedef</h4>
-                    <p>ODTÜ veya İTÜ</p>
-                </div>
-                <p style="margin-top: 40px; font-weight: 900; letter-spacing: 3px; color: var(--accent);">TAKİPTE KALIN....</p>
-            </div>
+        <section class="text-section">
+            <h1>Ben Ahmet Yasin.</h1>
+            <p>Şu an lisedeyim ve bilişim olimpiyatlarına hazırlanıyorum. C dili ve karmaşık algoritmalar üzerine derinleştiğim bir dönemdeyim.</p>
+            <div class="target">HEDEF: IOI'de Altın Madalya Almak.</div>
+            <p style="color:#888;">Üniversite hedefi: ODTÜ / İTÜ</p>
+            <p style="margin-top:40px; color:var(--accent); font-weight:900; letter-spacing:2px;">STAY TUNED...</p>
         </section>
-    </main>
+    </div>
 
     <script>
-        function setLang(lang) {
-            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
-            document.getElementById(lang + '-content').classList.add('active');
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + lang).classList.add('active');
-
-            const isTr = lang === 'tr';
-            document.getElementById('id-tag').innerText = isTr ? 'Kimlik Belgesi' : 'Identity Document';
-            document.getElementById('lbl-name').innerText = isTr ? 'İsim' : 'Name';
-            document.getElementById('lbl-surname').innerText = isTr ? 'Soyisim' : 'Surname';
-            document.getElementById('lbl-age').innerText = isTr ? 'Yaş' : 'Age';
-            document.getElementById('lbl-edu').innerText = isTr ? 'Eğitim' : 'Education';
-            document.getElementById('val-edu').innerText = isTr ? 'Lise' : 'High School';
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+            document.querySelector('.menu-toggle').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+            document.body.style.overflow = document.getElementById('nav-menu').classList.contains('active') ? 'hidden' : 'auto';
         }
     </script>
 </body>
