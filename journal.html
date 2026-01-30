@@ -6,53 +6,93 @@
     <title>Journal | AYG LABS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* HEADER VE NAV CSS (Aynı yapı, kopyalanabilir) */
         :root { --accent: #e63946; --bg: #0d0d0d; --border: rgba(255, 255, 255, 0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: #fff; letter-spacing: -0.02em; }
-        
-        header { width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; border-bottom: 2px solid var(--accent); position: sticky; top: 0; background: var(--bg); z-index: 100; }
-        .logo { font-weight: 900; font-size: 1.6rem; text-decoration: none; color: #fff; }
-        nav a { text-decoration: none; color: #fff; margin-left: 35px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; opacity: 0.7; }
-        
-        .container { padding: 80px 5%; }
-        .page-header { border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 60px; }
-        h1 { font-size: 5rem; font-weight: 900; text-transform: uppercase; line-height: 0.9; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: #fff; }
+        header { width: 100%; height: 75px; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent); background: var(--bg); position: sticky; top: 0; z-index: 1200; }
+        .logo { font-weight: 900; font-size: 1.4rem; text-decoration: none; color: #fff; }
+        .logo span { color: var(--accent); }
+        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { text-decoration: none; color: #fff; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; opacity: 0.6; }
+        nav a.active { opacity: 1; color: var(--accent); }
+        .lang-switcher { display: flex; gap: 10px; border-left: 1px solid var(--border); padding-left: 20px; }
+        .lang-btn { background: none; border: none; color: #fff; cursor: pointer; font-weight: 900; opacity: 0.3; }
+        .lang-btn.active { opacity: 1; color: var(--accent); }
 
-        .journal-list { display: flex; flex-direction: column; }
-        .journal-item { 
-            display: grid; grid-template-columns: 200px 1fr auto; 
-            padding: 40px 0; border-bottom: 1px solid var(--border); 
-            text-decoration: none; color: #fff; transition: 0.3s;
+        @media (max-width: 850px) {
+            .menu-toggle { display: flex; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1300; }
+            .menu-toggle span { width: 28px; height: 2px; background: #fff; }
+            .nav-wrapper { position: fixed; top: -100%; left: 0; width: 100%; height: 60vh; background: #111; flex-direction: column; justify-content: center; gap: 30px; transition: 0.6s; border-bottom: 4px solid var(--accent); z-index: 1100; visibility: hidden; }
+            .nav-wrapper.active { top: 75px; visibility: visible; }
+            nav { flex-direction: column; }
+            .lang-switcher { border-left: none; padding-top: 20px; border-top: 1px solid var(--border); }
         }
-        .journal-item:hover { background: #1a1a1a; padding-left: 20px; }
-        .date { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; }
-        .entry-title { font-size: 2rem; font-weight: 700; }
-        .arrow { font-size: 1.5rem; }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); visibility: hidden; transition: 0.4s; z-index: 1000; backdrop-filter: blur(8px); }
+        .overlay.active { visibility: visible; }
+
+        /* JOURNAL CONTENT */
+        .journal-container { max-width: 900px; margin: 0 auto; padding: 60px 5%; }
+        .entry-card { display: block; padding: 40px; border: 1px solid var(--border); margin-bottom: 25px; text-decoration: none; color: #fff; transition: 0.3s; }
+        .entry-card:hover { border-color: var(--accent); background: #111; }
+        .entry-date { color: var(--accent); font-weight: 900; font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        h2 { font-size: 2rem; font-weight: 900; text-transform: uppercase; }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
     </style>
 </head>
 <body>
     <header>
         <a href="index.html" class="logo">AYG<span>LABS</span></a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="journal.html" style="color:var(--accent); opacity:1;">Journal</a>
-            <a href="projects.html">Projects</a>
-            <a href="academic.html">Research & Documents</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <div class="page-header">
-            <h1>Journal Entries</h1>
-        </div>
-        
-        <div class="journal-list">
-            <a href="entry-01.html" class="journal-item">
-                <span class="date">Jan 29, 2026</span>
-                <span class="entry-title">Entry #01</span>
-                <span class="arrow">→</span>
-            </a>
+        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <div class="nav-wrapper" id="nav-wrapper">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="journal.html" class="active">Journal</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
             </div>
-    </div>
+        </div>
+    </header>
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <main class="journal-container">
+        <h1 id="page-title" style="font-size: 3.5rem; margin-bottom: 40px;">JOURNAL.</h1>
+        
+        <a href="entry-01.html" class="entry-card">
+            <span class="entry-date">JAN 29, 2026</span>
+            <div class="lang-content active" id="en-e1">
+                <h2>Entry #01: The Beginning</h2>
+                <p style="color:#666; margin-top:10px;">Roadmap to the olympiads and lab mission.</p>
+            </div>
+            <div class="lang-content" id="tr-e1">
+                <h2>Kayıt #01: Başlangıç</h2>
+                <p style="color:#666; margin-top:10px;">Olimpiyat yol haritası ve laboratuvar misyonu.</p>
+            </div>
+        </a>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('nav-wrapper').classList.toggle('active');
+            document.querySelector('.menu-toggle').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+        function setLang(lang) {
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('en-e1').parentElement.querySelectorAll('.lang-content').forEach(el => {
+                if(el.id.startsWith(lang)) el.classList.add('active');
+            });
+            document.getElementById('page-title').innerText = (lang === 'tr') ? 'GÜNLÜK.' : 'JOURNAL.';
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+    </script>
 </body>
 </html>
