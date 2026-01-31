@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COUNTDOWN // AYG LABS</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #e63946;
+            --bg: #0d0d0d;
+            --panel: #111;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            border: 10px solid var(--panel); /* Endüstriyel bir çerçeve */
+        }
+
+        .main-container {
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .status-header {
+            color: var(--accent);
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            background: var(--panel);
+            padding: 40px 20px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        /* Brütalist detay: Köşe işaretleri */
+        .counter-grid::before { content: '+'; position: absolute; top: -10px; left: -10px; color: var(--accent); }
+        .counter-grid::after { content: '+'; position: absolute; bottom: -10px; right: -10px; color: var(--accent); }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .value {
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .target-footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #444;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            display: inline-block;
+        }
+
+        .target-footer span {
+            color: #888;
+        }
+
+        /* Mobil Düzenlemeleri */
+        @media (max-width: 600px) {
+            body { border: 5px solid var(--panel); }
+            .counter-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 40px 10px;
+                padding: 30px 10px;
+            }
+            .value { font-size: 3rem; }
+            .status-header { font-size: 0.7rem; letter-spacing: 2px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="status-header">Mission: Informatics Olympiad 2026</div>
+        
+        <div class="counter-grid">
+            <div class="time-box">
+                <span class="value" id="days">000</span>
+                <span class="label" id="lbl-days">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="value" id="hours">00</span>
+                <span class="label" id="lbl-hours">Hrs</span>
+            </div>
+            <div class="time-box">
+                <span class="value" id="minutes">00</span>
+                <span class="label" id="lbl-min">Min</span>
+            </div>
+            <div class="time-box">
+                <span class="value" id="seconds">00</span>
+                <span class="label" id="lbl-sec">Sec</span>
+            </div>
+        </div>
+
+        <div class="target-footer">
+            TARGET_DATE: <span>16_MAY_2026_0900H</span><br>
+            LOCATION: <span>[TÜBİTAK_COMPETITION_CENTER]</span>
+        </div>
+    </div>
+
+    <script>
+        const target = new Date("May 16, 2026 09:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                document.querySelector(".main-container").innerHTML = 
+                "<h1 style='color:var(--accent); font-size:3rem;'>O.P.E.R.A.T.I.O.N_S.T.A.R.T.E.D</h1>";
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // İlk yüklemede çalıştır
+    </script>
+
+</body>
+</html>
